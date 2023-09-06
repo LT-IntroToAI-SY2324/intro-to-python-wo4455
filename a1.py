@@ -13,11 +13,13 @@ check, if you do not complete the generative AI portion of the assignment.
 """
 
 from typing import List, TypeVar
+import math
 
 
 def absolute(n: int) -> int:
     """Gives the absolute value of the passed in number. Cannot use the built in
     function `abs`.
+    
 
     Args:
         n - the number to take the absolute value of
@@ -25,7 +27,16 @@ def absolute(n: int) -> int:
     Returns:
         the absolute value of the passed in number
     """
-    raise NotImplementedError("absolute")
+    #solution 1:
+    # if n < 0:
+    #     return n * -1
+    # else:
+    #     return n
+    
+    #solution 2:
+    n = n ** 2
+    n = math.sqrt(n)
+    return n
 
 
 def factorial(n: int) -> int:
@@ -38,7 +49,14 @@ def factorial(n: int) -> int:
     Returns:
         factorial of the passed in number
     """
-    raise NotImplementedError("factorial")
+    if n < 0:
+        print("Number cannot be negative")
+    elif n == 0:
+        return 1
+    elif n == 1:
+        return n
+    else:
+        return n * factorial(n - 1) ## yay recursion
 
 
 T = TypeVar("T")
@@ -55,7 +73,10 @@ def every_other(lst: List[T]) -> List[T]:
     Returns:
         a list of every of other item in the original list starting with the first
     """
-    raise NotImplementedError("every_other")
+    newList = List[T]
+    for i in range(0, len(lst), 2):
+        newList.append(lst[i])
+    return newList
 
 
 def sum_list(lst: List[int]) -> int:
@@ -68,7 +89,10 @@ def sum_list(lst: List[int]) -> int:
     Returns:
         the sum of the passed in list
     """
-    raise NotImplementedError("sum_list")
+    total = 0
+    for i in range(0, len(lst)):
+        total = total + lst[i]
+    return total
 
 
 def mean(lst: List[int]) -> float:
@@ -80,7 +104,10 @@ def mean(lst: List[int]) -> float:
     Returns:
         the mean of the passed in list
     """
-    raise NotImplementedError("mean")
+    total = 0
+    for i in range(0, len(lst)):
+        total = total + lst[i]
+    return total / len(lst)
 
 
 def median(lst: List[int]) -> float:
@@ -95,6 +122,12 @@ def median(lst: List[int]) -> float:
     Returns:
         the median of the passed in list
     """
+
+    #incomplete
+    length = len(lst)
+    if length % 2 != 0:
+        return lst[length / 2]
+
     raise NotImplementedError("median")
 
 
@@ -117,7 +150,16 @@ def duck_duck_goose(lst: List[str]) -> List[str]:
     Returns:
         the resulting list after playing duck duck goose
     """
-    raise NotImplementedError("duck_duck_goose")
+    # incomplete/doesnt work yet
+    i = 0
+    count = 0
+    while len(lst) > 1:
+        if count % 2 == 0 and count != 0:
+            lst.pop(i)
+        i = i + 1
+        count = count + 1
+        if i == len(lst) - 1:
+            i = 0
 
 
 # this line causes the nested code to be skipped if the file is imported instead of run
