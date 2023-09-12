@@ -1,17 +1,3 @@
-"""Assignment 1
-
-Fill in the following function skeletons - descriptions are provided in 
-the docstring (the triple quote thing at the top of each function)
-
-Some assert statements have been provided - write more of them to test your code!
-
-The `raise NotImplementedError(...)`s are placeholders to help you not skip implementing
-a function. They should be removed and replaced with your solution.
-
-This portion of the assignment will not be graded, but this gives you some problems to 
-check, if you do not complete the generative AI portion of the assignment.
-"""
-
 from typing import List, TypeVar
 import math
 
@@ -122,13 +108,17 @@ def median(lst: List[int]) -> float:
     Returns:
         the median of the passed in list
     """
+    lst.sort()
+    if len(lst) % 2 == 0:
+        mid1 = len(lst) // 2
+        mid2 = mid1 - 1
+        median = (lst[mid1] + lst[mid2]) / 2.0
+    else:
+        mid = len(lst) // 2
+        median = lst[mid]
 
-    #incomplete
-    length = len(lst)
-    if length % 2 != 0:
-        return lst[length / 2]
+    return median
 
-    raise NotImplementedError("median")
 
 
 def duck_duck_goose(lst: List[str]) -> List[str]:
@@ -150,16 +140,21 @@ def duck_duck_goose(lst: List[str]) -> List[str]:
     Returns:
         the resulting list after playing duck duck goose
     """
-    # incomplete/doesnt work yet
-    i = 0
+    index = 0
     count = 0
-    while len(lst) > 1:
-        if count % 2 == 0 and count != 0:
-            lst.pop(i)
-        i = i + 1
-        count = count + 1
-        if i == len(lst) - 1:
-            i = 0
+
+    while len(lst) > 2:
+        count += 1
+        if index >= len(lst):
+            index = 0
+        if count == 3:
+            lst.pop(index)
+            count = 0
+        else:
+            index += 1
+
+    return lst
+
 
 
 # this line causes the nested code to be skipped if the file is imported instead of run
